@@ -36,14 +36,17 @@ export const getAllCountries = (req, res) => {
 };
 
 export const getSingleCountry = (req, res) => {
-    //console.log(req.params);
-    const findCountry = countries.find((country) => country.alpha2Code == req.params.alpha2Code);
-    //console.log(findCountry);
-    if (findCountry) {
+    console.log(req.params.alphaXCode.length);
+    let findCountry
+    if (req.params.alphaXCode.length === 2) {
+        findCountry = countries.find((country) => country.alpha2Code == req.params.alphaXCode);
+        res.status(200).json(findCountry);
+    } else if (req.params.alphaXCode.length === 3) {
+        findCountry = countries.find((country) => country.alpha3Code == req.params.alphaXCode);
         res.status(200).json(findCountry);
     } else {
         res.status(400).send('Country not in database')
-    };        
+    };       
 };
 
 export const addNewCountry = (req, res) => {

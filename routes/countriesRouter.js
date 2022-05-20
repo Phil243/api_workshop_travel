@@ -12,7 +12,7 @@ import {
  countriesRouter.route('/').get(getAllCountries).post(addNewCountry);
 
  countriesRouter
-    .route('/:alpha2Code')
+    .route('/:alphaXCode')
     .get(getSingleCountry)
     .put(editCountry)
     .delete(deleteCountry);
